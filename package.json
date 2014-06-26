@@ -1,0 +1,23 @@
+{
+  "name": "ainojs-detect",
+  "version": "1.0.0",
+  "description": "Detects common browser features and support",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aino/ainojs-detect"
+  },
+  "license": "MIT",
+  "dependencies": {
+  },
+  "bugs": {
+    "url": "https://github.com/aino/ainojs-detect/issues"
+  },
+  "homepage": "https://github.com/aino/ainojs-detect",
+  "main": "detect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aino",
+  "devDependencies": {
+  }
+}
