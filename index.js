@@ -1,5 +1,4 @@
 /*
- * Detect
  * Detects various browser features and vendors
  */
 
