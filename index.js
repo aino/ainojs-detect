@@ -11,7 +11,9 @@ module.exports = {
 
   touch: !!('ontouchstart' in document),
 
-  canvas: !!( 'getContext' in document.createElement('canvas') ),
+  canvas: !!('getContext' in document.createElement('canvas')),
+
+  blendMode: typeof window.getComputedStyle(document.body).backgroundBlendMode != 'undefined',
 
   svg: (function() {
     return !! document.createElementNS &&
