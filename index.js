@@ -12,7 +12,7 @@ module.exports = {
 
   canvas: !!('getContext' in document.createElement('canvas')),
 
-  blendMode: typeof window.getComputedStyle(document.body).backgroundBlendMode != 'undefined',
+  blendMode: document.documentElement && typeof window.getComputedStyle(document.documentElement).backgroundBlendMode != 'undefined',
 
   svg: (function() {
     return !! document.createElementNS &&
