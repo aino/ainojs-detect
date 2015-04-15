@@ -1,6 +1,6 @@
 {
   "name": "ainojs-detect",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Detects common browser features and support",
   "repository": {
     "type": "git",
