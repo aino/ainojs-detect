@@ -9,6 +9,12 @@ if ( typeof window == 'undefined' ) {
   var ua = navigator.userAgent.toLowerCase()
   var isWebkit = ua.indexOf( "applewebkit" ) > -1
   var platform = navigator.platform
+  var hasWebP = false
+  var WebP = new Image()
+  WebP.onerror = WebP.onload = function() {
+    hasWebP = WebP.height == 2
+  }
+  WebP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA'
 
   module.exports = {
 
@@ -22,6 +28,8 @@ if ( typeof window == 'undefined' ) {
       return !! document.createElementNS &&
              !! document.createElementNS('http://www.w3.org/2000/svg','svg').createSVGRect
     }()),
+
+    webp: hasWebP,
 
     ie: (function() {
 
