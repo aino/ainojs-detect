@@ -6,15 +6,22 @@ if ( typeof window == 'undefined' ) {
   module.exports = {} // no detection for node
 } else {
 
+  var transforms = {
+      'webkitTransform':'-webkit-transform',
+      'OTransform':'-o-transform',
+      'msTransform':'-ms-transform',
+      'MozTransform':'-moz-transform',
+      'transform':'transform'
+  }
   var ua = navigator.userAgent.toLowerCase()
   var isWebkit = ua.indexOf( "applewebkit" ) > -1
   var platform = navigator.platform
   var hasWebP = false
-  var WebP = new Image()
-  WebP.onerror = WebP.onload = function() {
-    hasWebP = WebP.height == 2
+  var webP = new Image()
+  webP.onerror = webP.onload = function() {
+    hasWebP = webP.height == 2
   }
-  WebP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA'
+  webP.src='data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA'
 
   module.exports = {
 
@@ -63,17 +70,19 @@ if ( typeof window == 'undefined' ) {
       } 
       return dp ? dp > 1 : false
     }()),
+
+    transformPrefix: (function() {
+      var el = document.createElement('p')
+      for (var t in transforms) {
+        if ( typeof el.style[t] != 'undefined' )
+          return t
+      }
+      return ''
+    }()),
     
     translate3d: (function() {
       var el = document.createElement('p')
       var has3d
-      var transforms = {
-          'webkitTransform':'-webkit-transform',
-          'OTransform':'-o-transform',
-          'msTransform':'-ms-transform',
-          'MozTransform':'-moz-transform',
-          'transform':'transform'
-      }
 
       document.documentElement.insertBefore(el, null)
 
@@ -81,6 +90,7 @@ if ( typeof window == 'undefined' ) {
         if ( typeof el.style[t] != 'undefined' ) {
           el.style[t] = 'translate3d(1px,1px,1px)'
           has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
+          break
         }
       }
 
