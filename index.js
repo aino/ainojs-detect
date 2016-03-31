@@ -48,7 +48,7 @@ if ( typeof window == 'undefined' ) {
         div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->'
       while 
         (all[0])
-      return v > 4 ? v : document.documentMode
+      return v > 4 ? v : ( document.documentMode || parseFloat(ua.replace(/^.*edge\/([\d]{1,2}(\.[\d]+)?).*$/i,'$1')) || undefined )
 
     }()),
 
